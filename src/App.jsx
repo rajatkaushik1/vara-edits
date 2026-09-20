@@ -45,6 +45,7 @@ function App() {
   const headerLeftRef = useRef(null);
   const logoRef = useRef(null);
   const [maxDistance, setMaxDistance] = useState(0);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false);
 
   // Track global page scroll progress (0 at top, 1 at bottom)
   const { scrollYProgress } = useScroll();
@@ -100,10 +101,15 @@ function App() {
       observer.observe(headerLeftRef.current);
     }
 
-    window.addEventListener('resize', updateDistance);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      updateDistance();
+    };
+
+    window.addEventListener('resize', handleResize);
     return () => {
       observer.disconnect();
-      window.removeEventListener('resize', updateDistance);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -129,8 +135,8 @@ function App() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              x: logoX,
-              rotate: logoRotate,
+              x: isMobile ? 0 : logoX,
+              rotate: isMobile ? 0 : logoRotate,
               willChange: 'transform',
               position: 'relative',
             }}
