@@ -142,17 +142,18 @@ function App() {
             }}
           >
             {/* Left Drift Trail (behind logo when sliding right) */}
-            <motion.div
-              style={{
-                position: 'absolute',
-                right: '100%',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                pointerEvents: 'none',
-                opacity: leftTrailOpacity,
-                zIndex: 0,
-              }}
-            >
+            {!isMobile && (
+              <motion.div
+                style={{
+                  position: 'absolute',
+                  right: '100%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  pointerEvents: 'none',
+                  opacity: leftTrailOpacity,
+                  zIndex: 0,
+                }}
+              >
               {/* Soft gold drift haze */}
               <div
                 style={{
@@ -192,19 +193,21 @@ function App() {
                 </motion.div>
               ))}
             </motion.div>
+            )}
 
             {/* Right Drift Trail (behind logo when sliding left) */}
-            <motion.div
-              style={{
-                position: 'absolute',
-                left: '100%',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                pointerEvents: 'none',
-                opacity: rightTrailOpacity,
-                zIndex: 0,
-              }}
-            >
+            {!isMobile && (
+              <motion.div
+                style={{
+                  position: 'absolute',
+                  left: '100%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  pointerEvents: 'none',
+                  opacity: rightTrailOpacity,
+                  zIndex: 0,
+                }}
+              >
               {/* Soft gold drift haze */}
               <div
                 style={{
@@ -244,6 +247,7 @@ function App() {
                 </motion.div>
               ))}
             </motion.div>
+            )}
 
             {/* Logo Image */}
             <img
